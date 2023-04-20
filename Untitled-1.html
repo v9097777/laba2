@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Розрахунок середнього стажу роботи</title>
+    <script>
+        function calculateAverageExperience() {
+            var employees = []; // Масив для збереження даних про співробітників
+            var totalExperience = 0; // Загальний стаж роботи
+
+            // Отримуємо значення з полів вводу та додаємо їх до масиву employees
+            for (var i = 1; i <= 5; i++) {
+                var surname = document.getElementById("surname" + i).value;
+                var hireDate = new Date(document.getElementById("hireDate" + i).value);
+                var currentDate = new Date();
+                var experience = currentDate.getFullYear() - hireDate.getFullYear();
+                employees.push({surname: surname, experience: experience});
+                totalExperience += experience;
+            }
+
+            // Розраховуємо середній стаж роботи
+            var averageExperience = Math.round(totalExperience / employees.length);
+
+            // Виводимо результат на сторінку
+            document.getElementById("result").innerHTML = "Середній стаж роботи: " + averageExperience + " років";
+        }
+    </script>
+</head>
+<body>
+    <h1>Розрахунок середнього стажу роботи</h1>
+    <form>
+        <table>
+            <tr>
+                <th>Прізвище</th>
+                <th>Дата прийому на роботу</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="surname1"></td>
+                <td><input type="date" id="hireDate1"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="surname2"></td>
+                <td><input type="date" id="hireDate2"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="surname3"></td>
+                <td><input type="date" id="hireDate3"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="surname4"></td>
+                <td><input type="date" id="hireDate4"></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="surname5"></td>
+                <td><input type="date" id="hireDate5"></td>
+            </tr>
+        </table>
+        <button type="button" onclick="calculateAverageExperience()">Розрахувати</button>
+    </form>
+    <p id="result"></p>
+</body>
+</html>
